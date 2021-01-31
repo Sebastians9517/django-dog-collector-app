@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Leaving the action empty makes the form post to the same url used to display, this is what Django is expecting -->
+<form action="" method="POST">
+    {% if object %}
+        <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+    {% else %}
+        <h1>Add Dog</h1>
+     {% endif %}
+    <!-- Django requires the following security purposes -->
+    {% csrf_token %}
+    <table>
+        <!-- Render the inputs inside of <tr>s and <td>s -->
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit!" class="btn">
+</form>
+
+{% endblock%}
